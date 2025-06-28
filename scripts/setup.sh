@@ -186,4 +186,3 @@ echo ""
 echo "📁 Your AI workspace: ~/ai-workspace/"
 echo "🔍 Search conversations: ai_search 'term'"
 echo "📚 Recent chats: ai_recent"
-EOF
