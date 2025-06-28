@@ -1,6 +1,3 @@
-# Conversation logs (keep private)
-conversations/
-
 # Temporary files
 *.tmp
 *.log
@@ -11,3 +8,18 @@ Thumbs.db
 
 # Personal config overrides (if you add any)
 configs/personal-*
+
+# Backup files
+*~
+*.bak
+*.backup
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.Trash-*
+.fuse_hidden*

@@ -5,24 +5,24 @@
 ai_chat() {
     local model=${1:-"llama3.1:8b"}
     local topic=${2:-"general"}
-    local timestamp=$(date +%Y%m%d-%H%M%S)
-    local logfile="$HOME/ai-workspace/conversations/$topic/${model//[:.\/]/_}-$timestamp.txt"
     
-    echo "🤖 Starting AI chat with $model"
-    echo "📝 Logging to: $logfile"
-    echo "Type 'exit' or '/bye' to end conversation"
-    echo "----------------------------------------" | tee "$logfile"
-    echo "Model: $model | Topic: $topic | Started: $(date)" | tee -a "$logfile"
-    echo "----------------------------------------" | tee -a "$logfile"
+    echo "🤖 Starting AI chat with $model (Topic: $topic)"
+    echo "Type '/bye' to end conversation"
+    echo "----------------------------------------"
     
-    ollama run "$model" | tee -a "$logfile"
+    ollama run "$model"
 }
+# Clean, fast aliases for daily use
+alias ai-code='ollama run coding-ai'
+alias ai-sec='ollama run security-ai'  
+alias ai-blockchain='ollama run blockchain-ai'
+alias ai-general='ollama run llama3.1:8b'
 
-# Quick access aliases
-alias ai-code='ai_chat "coding-ai" "code"'
-alias ai-sec='ai_chat "security-ai" "security"' 
-alias ai-blockchain='ai_chat "blockchain-ai" "blockchain"'
-alias ai-general='ai_chat "llama3.1:8b" "general"'
+# Private versions (same thing, just for clarity)
+alias ai-private='ollama run llama3.1:8b'
+alias ai-private-code='ollama run coding-ai'
+alias ai-private-sec='ollama run security-ai'
+alias ai-private-blockchain='ollama run blockchain-ai'
 
 # Model management
 alias ai-list='ollama list'

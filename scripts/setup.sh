@@ -7,8 +7,7 @@ echo "🤖 Setting up Local AI Organization Structure..."
 
 # Create directory structure
 echo "📁 Creating directory structure..."
-mkdir -p ~/ai-workspace/{conversations,configs,scripts,prompts}
-mkdir -p ~/ai-workspace/conversations/{llama,mistral,code,security,general}
+mkdir -p ~/ai-workspace/{configs,scripts,prompts}
 mkdir -p ~/ai-workspace/prompts/{coding,security,blockchain,general}
 
 # Create specialized prompt templates
@@ -88,66 +87,32 @@ EOF
 
 chmod +x ~/ai-workspace/scripts/create-specialized-models.sh
 
-# Create conversation logging functions
+# Create AI functions and aliases
 cat > ~/ai-workspace/scripts/ai-functions.zsh << 'EOF'
-# AI Conversation Logging Functions
+# AI Assistant Functions and Aliases
 # Source this in your ~/.zshrc
 
-# Function to start logged conversation
+# Function to start AI chat with session info
 ai_chat() {
     local model=${1:-"llama3.1:8b"}
     local topic=${2:-"general"}
-    local timestamp=$(date +%Y%m%d-%H%M%S)
-    local logfile="$HOME/ai-workspace/conversations/$topic/${model//[:.\/]/_}-$timestamp.txt"
     
-    echo "🤖 Starting AI chat with $model"
-    echo "📝 Logging to: $logfile"
-    echo "Type 'exit' or '/bye' to end conversation"
-    echo "----------------------------------------" | tee "$logfile"
-    echo "Model: $model | Topic: $topic | Started: $(date)" | tee -a "$logfile"
-    echo "----------------------------------------" | tee -a "$logfile"
+    echo "🤖 Starting AI chat with $model (Topic: $topic)"
+    echo "Type '/bye' to end conversation"
+    echo "----------------------------------------"
     
-    ollama run "$model" | tee -a "$logfile"
+    ollama run "$model"
 }
 
-# Quick access aliases
-alias ai-code='ai_chat "coding-ai" "code"'
-alias ai-sec='ai_chat "security-ai" "security"' 
-alias ai-blockchain='ai_chat "blockchain-ai" "blockchain"'
-alias ai-general='ai_chat "llama3.1:8b" "general"'
+# Clean, fast aliases for daily use
+alias ai-code='ollama run coding-ai'
+alias ai-sec='ollama run security-ai'  
+alias ai-blockchain='ollama run blockchain-ai'
+alias ai-general='ollama run llama3.1:8b'
 
 # Model management
 alias ai-list='ollama list'
 alias ai-models='ls -la ~/.ollama/models/'
-alias ai-logs='ls -la ~/ai-workspace/conversations/'
-
-# Conversation search
-ai_search() {
-    local query="$1"
-    if [[ -z "$query" ]]; then
-        echo "Usage: ai_search 'search term'"
-        return 1
-    fi
-    
-    echo "🔍 Searching conversations for: $query"
-    grep -r -i --include="*.txt" "$query" ~/ai-workspace/conversations/
-}
-
-# Show recent conversations
-ai_recent() {
-    local count=${1:-5}
-    echo "📚 Recent AI conversations:"
-    find ~/ai-workspace/conversations/ -name "*.txt" -type f -printf '%T@ %p\n' | sort -n | tail -$count | cut -d' ' -f2- | while read file; do
-        echo "$(stat -c %y "$file" | cut -d' ' -f1) - $(basename "$file")"
-    done
-}
-
-# Clean old conversations (older than 30 days)
-ai_cleanup() {
-    echo "🧹 Cleaning conversations older than 30 days..."
-    find ~/ai-workspace/conversations/ -name "*.txt" -type f -mtime +30 -delete
-    echo "✅ Cleanup complete"
-}
 EOF
 
 # Create configuration file
@@ -159,11 +124,6 @@ models:
   security: "security-ai"
   blockchain: "blockchain-ai"
 
-logging:
-  enabled: true
-  directory: "~/ai-workspace/conversations"
-  auto_cleanup_days: 30
-
 settings:
   default_temperature: 0.7
   max_tokens: 4096
@@ -174,15 +134,14 @@ echo "📋 Installation Summary:"
 echo "✅ Directory structure created in ~/ai-workspace/"
 echo "✅ Prompt templates created"
 echo "✅ Management scripts created"
-echo "✅ Conversation logging functions created"
+echo "✅ AI functions and aliases created"
 echo ""
 echo "🚀 Next steps:"
 echo "1. Add to your ~/.zshrc:"
 echo "   echo 'source ~/ai-workspace/scripts/ai-functions.zsh' >> ~/.zshrc"
 echo "2. Reload shell: source ~/.zshrc"
 echo "3. Create specialized models: ~/ai-workspace/scripts/create-specialized-models.sh"
-echo "4. Start coding session: ai-code"
+echo "4. Start using AI: ai-code, ai-sec, ai-blockchain"
 echo ""
 echo "📁 Your AI workspace: ~/ai-workspace/"
-echo "🔍 Search conversations: ai_search 'term'"
-echo "📚 Recent chats: ai_recent"
+echo "🚖 Available commands: ai-list, ai-models"

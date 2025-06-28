@@ -10,9 +10,9 @@ This project provides a complete local AI workspace that enables true digital so
 
 - 🔒 **Complete Privacy** - All AI conversations stay on your machine
 - 🎯 **Specialized AI Models** - Custom assistants for coding, security, and blockchain
-- 📁 **Organized Workspace** - Structured conversation logging and model management
-- ⚡ **Flexible Usage** - Choose between logged sessions (for knowledge building) and private sessions (no traces)
-- 🛠 **Easy Setup** - Automated installation script for Arch Linux
+- 📁 **Organized Workspace** - Structured model and prompt management
+- ⚡ **Fast Access** - Clean, direct aliases for instant AI assistance
+- 🛠 **Easy Setup** - Automated installation script for Linux
 
 ## 📋 Prerequisites
 
@@ -55,10 +55,9 @@ This project provides a complete local AI workspace that enables true digital so
 
 4. **Start using your AI assistants:**
    ```bash
-   ai-code          # Coding assistant (logged)
-   ai-sec           # Security expert (logged)
-   ai-blockchain    # Blockchain specialist (logged)
-   ai-private       # General model (no logs)
+   ai-code          # Coding assistant
+   ai-sec           # Security expert
+   ai-blockchain    # Blockchain specialist
    ```
 
 ## 🤖 Available AI Assistants
@@ -83,19 +82,10 @@ This project provides a complete local AI workspace that enables true digital so
 - Ethereum ecosystem and tooling knowledge
 - Temperature: 0.1 (precise technical guidance)
 
-### Private Mode
-
-All models available with `ai-private-*` aliases for zero-logging conversations.
-
 ## 📁 Workspace Structure
 
 ```
 ~/ai-workspace/
-├── conversations/          # Logged AI conversations by category
-│   ├── code/              # Coding sessions
-│   ├── security/          # Security discussions
-│   ├── blockchain/        # Blockchain development
-│   └── general/           # General conversations
 ├── prompts/               # System prompt templates
 │   ├── coding/
 │   ├── security/
@@ -113,23 +103,18 @@ All models available with `ai-private-*` aliases for zero-logging conversations.
 ### Starting Conversations
 
 ```bash
-# Specialized assistants with logging
+# Specialized AI assistants
 ai-code                    # Ask about coding problems
 ai-sec                     # Cybersecurity questions
 ai-blockchain             # Blockchain development help
-
-# Private mode (no conversation logs)
-ai-private                # General questions privately
-ai-private-code           # Coding help without logging
 ```
 
-### Managing Conversations
+### Model Management
 
 ```bash
-ai_search "smart contracts"  # Search past conversations
-ai_recent                   # Show recent conversations
-ai_cleanup                  # Remove old conversations (30+ days)
 ai-list                     # List all available models
+ai-models                   # Check model storage details
+ollama list                 # Direct ollama command
 ```
 
 ### Direct Model Access
@@ -143,7 +128,7 @@ ollama list                 # See all installed models
 ## 🛡️ Privacy Features
 
 - **Local Processing** - No data sent to external servers
-- **Conversation Control** - Choose what gets logged and what stays private
+- **Complete Privacy** - All conversations stay on your machine
 - **No Telemetry** - Complete isolation from cloud AI services
 - **Secure Storage** - All data stays on your filesystem with your permissions
 
@@ -198,15 +183,15 @@ du -sh ~/.ollama/           # Check storage usage
 - **Base Model**: Llama 3.1 8B (4.7GB download)
 - **Framework**: Ollama for model management
 - **Shell**: Zsh functions and aliases
-- **Storage**: Models stored in `~/.ollama/models/`
-- **Logging**: Plain text files with timestamps
+- **Storage**: AI models stored in `~/.ollama/models/` (managed by ollama)
+- **Workspace**: Configuration and prompts in `~/ai-workspace/`
 
 ## 🤝 Contributing
 
 Contributions welcome! This project aims to make local AI accessible for digital sovereignty. Areas for improvement:
 
 - Additional specialized AI personalities
-- Better conversation management tools
+- Better model management tools
 - Integration with development workflows
 - Support for other Linux distributions
 
