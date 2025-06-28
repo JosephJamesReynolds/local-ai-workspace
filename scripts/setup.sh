@@ -7,7 +7,7 @@ echo "🤖 Setting up Local AI Organization Structure..."
 
 # Create directory structure
 echo "📁 Creating directory structure..."
-mkdir -p ~/ai-workspace/{conversations,models,configs,scripts,prompts}
+mkdir -p ~/ai-workspace/{conversations,configs,scripts,prompts}
 mkdir -p ~/ai-workspace/conversations/{llama,mistral,code,security,general}
 mkdir -p ~/ai-workspace/prompts/{coding,security,blockchain,general}
 
