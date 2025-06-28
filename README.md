@@ -34,8 +34,8 @@ This project provides a complete local AI workspace that enables true digital so
    ```bash
    git clone https://github.com/JosephJamesReynolds/local-ai-workspace.git
    cd local-ai-workspace
-   chmod +x setup.sh
-   ./setup.sh
+   chmod +x scripts/setup.sh
+   ./scripts/setup.sh
    ```
 
    **Note**: On non-Arch systems, install ollama first: `curl -fsSL https://ollama.com/install.sh | sh`
