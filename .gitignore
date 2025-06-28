@@ -1,0 +1,13 @@
+# Conversation logs (keep private)
+conversations/
+
+# Temporary files
+*.tmp
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Personal config overrides (if you add any)
+configs/personal-*

@@ -1,0 +1,16 @@
+# Local AI Configuration
+models:
+  primary: "llama3.1:8b"
+  coding: "coding-ai" 
+  security: "security-ai"
+  blockchain: "blockchain-ai"
+
+logging:
+  enabled: true
+  directory: "~/ai-workspace/conversations"
+  auto_cleanup_days: 30
+
+settings:
+  default_temperature: 0.7
+  max_tokens: 4096
+  context_window: 8192
